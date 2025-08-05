@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Texture Packs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: url('https://images.unsplash.com/photo-1504610926078-a1611febcad3') no-repeat center center/cover;
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px;
+      position: relative;
+      overflow-x: hidden;
+      backdrop-filter: blur(4px);
+    }
+
+    a {
+      color: #00ffff;
+      text-decoration: none;
+      font-size: 1em;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 30px;
+    }
+
+    .pack-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .pack {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00ffff50;
+      border-radius: 15px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 0 15px #00ffff60;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pack:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00ffffa0;
+    }
+
+    .pack img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .pack-title {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #00ffff;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .download-btn:hover {
+      background: #00dddd;
+    }
+
+    .trail-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 255, 255, 0.6);
+      pointer-events: none;
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html">← Back to Home</a>
+  <h1>🎨 Texture Packs</h1>
+  <div class="pack-container">
+    <div class="pack">
+      <img src="https://i.imgur.com/fO2xTwz.png" alt="Faithful 32x">
+      <div class="pack-title">🧵 Faithful 32x</div>
+      <a class="download-btn" href="#">Download</a>
+    </div>
+    <div class="pack">
+      <img src="https://i.imgur.com/bAx1ETc.png" alt="PvP Ultra">
+      <div class="pack-title">⚔️ PvP Ultra</div>
+      <a class="download-btn" href="#">Download</a>
+    </div>
+    <div class="pack">
+      <img src="https://i.imgur.com/84oVnD5.png" alt="Realistic HD">
+      <div class="pack-title">🏞️ Realistic HD</div>
+      <a class="download-btn" href="#">Download</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('mousemove', e => {
+      const dot = document.createElement('div');
+      dot.className = 'trail-dot';
+      dot.style.left = e.pageX + 'px';
+      dot.style.top = e.pageY + 'px';
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 1000);
+    });
+  </script>
+</body>
+</html>
 
