@@ -3,88 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pack Hub - Home</title>
+  <title>Texture Packs</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at center, #0f0f0f 0%, #000000 100%);
-      color: #ffffff;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      background: url('https://images.unsplash.com/photo-1504610926078-a1611febcad3') no-repeat center center/cover;
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px;
+      backdrop-filter: blur(4px);
+    }
+
+    a {
+      color: #00ffff;
+      text-decoration: none;
+      font-size: 1em;
     }
 
     h1 {
       font-size: 3em;
-      margin-bottom: 40px;
       text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 30px;
     }
 
-    .buttons {
+    .pack-container {
       display: flex;
-      gap: 25px;
+      flex-wrap: wrap;
+      gap: 30px;
     }
 
-    .buttons a {
-      padding: 15px 35px;
-      background: linear-gradient(145deg, #00c3ff, #0066ff);
-      color: white;
-      font-size: 1.1em;
-      border-radius: 12px;
-      text-decoration: none;
-      box-shadow: 0 0 15px #00ffff;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+    .pack {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00ffff50;
+      border-radius: 15px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 0 15px #00ffff60;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .buttons a:hover {
+    .pack:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px #00ffff;
+      box-shadow: 0 0 25px #00ffffa0;
     }
 
-    .trail-dot {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(0, 255, 255, 0.7);
-      pointer-events: none;
-      animation: fadeOut 1s forwards;
+    .pack img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
     }
 
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        transform: scale(2);
-      }
+    .pack-title {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .download-btn {
+      padding: 10px 20px;
+      background: #00ffff;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .download-btn:hover {
+      background: #00dddd;
     }
   </style>
 </head>
 <body>
-  <h1>🚀 Pack Hub</h1>
+  <a href="/tpack/">← Back to Home</a>
+  <h1>🎨 Texture Packs</h1>
 
-  <div class="buttons">
-    <a href="sky-packs/">🌌 Sky Packs</a>
-    <a href="texture-packs/">🎨 Texture Packs</a>
+  <div class="pack-container">
+    <div class="pack">
+      <img src="https://i.imgur.com/fO2xTwz.png" alt="Faithful 32x">
+      <div class="pack-title">🧵 Faithful 32x</div>
+      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
+    </div>
+
+    <div class="pack">
+      <img src="https://i.imgur.com/bAx1ETc.png" alt="PvP Ultra">
+      <div class="pack-title">⚔️ PvP Ultra</div>
+      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
+    </div>
+
+    <div class="pack">
+      <img src="https://i.imgur.com/84oVnD5.png" alt="Realistic HD">
+      <div class="pack-title">🏞️ Realistic HD</div>
+      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
+    </div>
   </div>
-
-  <script>
-    document.addEventListener('mousemove', e => {
-      const dot = document.createElement('div');
-      dot.className = 'trail-dot';
-      dot.style.left = e.pageX + 'px';
-      dot.style.top = e.pageY + 'px';
-      document.body.appendChild(dot);
-      setTimeout(() => dot.remove(), 1000);
-    });
-  </script>
 </body>
 </html>
