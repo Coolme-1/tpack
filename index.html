@@ -23,26 +23,8 @@
 
     h1 {
       font-size: 3em;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #00ffff;
-    }
-
-    input[type="text"] {
-      padding: 12px 20px;
-      font-size: 1em;
-      border: none;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
       margin-bottom: 40px;
-      width: 250px;
-      outline: none;
-      box-shadow: 0 0 10px #00ffff80;
-      transition: 0.3s ease;
-    }
-
-    input[type="text"]:focus {
-      box-shadow: 0 0 20px #00ffff;
+      text-shadow: 0 0 10px #00ffff;
     }
 
     .buttons {
@@ -88,15 +70,13 @@
 </head>
 <body>
   <h1>🚀 Pack Hub</h1>
-  <input type="text" placeholder="Search Packs..." />
 
   <div class="buttons">
-    <a href="sky-packs/">🌌 Sky Packs</a>
-    <a href="texture-packs/">🎨 Texture Packs</a>
+    <a href="texture-packs/">🌌 Sky Packs</a>
+    <a href="sky-packs/">🎨 Texture Packs</a>
   </div>
 
   <script>
-    // Pointer Trail
     document.addEventListener('mousemove', e => {
       const dot = document.createElement('div');
       dot.className = 'trail-dot';
