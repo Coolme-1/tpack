@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Texture Packs</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
@@ -10,48 +10,72 @@
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at center, #0f0f0f 0%, #000000 100%);
-      color: #ffffff;
+      background: url('https://images.unsplash.com/photo-1504610926078-a1611febcad3') no-repeat center center/cover;
+      color: #fff;
       min-height: 100vh;
       padding: 40px;
       position: relative;
-      overflow: hidden;
-    }
-
-    h1 {
-      font-size: 2.8em;
-      text-shadow: 0 0 10px #00ffff;
-      margin-bottom: 20px;
+      overflow-x: hidden;
+      backdrop-filter: blur(4px);
     }
 
     a {
       color: #00ffff;
       text-decoration: none;
-      font-size: 1.1em;
+      font-size: 1em;
     }
 
-    a:hover {
-      text-decoration: underline;
+    h1 {
+      font-size: 3em;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 30px;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 30px;
+    .pack-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
     }
 
-    li {
-      background: rgba(255, 255, 255, 0.05);
-      border-left: 4px solid #00ffff;
-      padding: 15px 20px;
+    .pack {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00ffff50;
+      border-radius: 15px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 0 15px #00ffff60;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pack:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00ffffa0;
+    }
+
+    .pack img {
+      width: 100%;
+      border-radius: 10px;
       margin-bottom: 15px;
-      border-radius: 8px;
-      transition: 0.3s ease;
     }
 
-    li:hover {
-      background: rgba(0, 255, 255, 0.1);
-      transform: scale(1.02);
+    .pack-title {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #00ffff;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .download-btn:hover {
+      background: #00dddd;
     }
 
     .trail-dot {
@@ -75,16 +99,25 @@
 <body>
   <a href="index.html">← Back to Home</a>
   <h1>🎨 Texture Packs</h1>
-  <ul>
-    <li>🧵 Faithful 32x – Clean high-res look</li>
-    <li>⚔️ PvP Ultra – Low fire, fast combos</li>
-    <li>🏞️ Realistic HD – Ultra-detailed textures</li>
-    <li>🌀 Animated Blocks – Blocks with effects</li>
-    <li>🔥 8x FPS Boost Pack – For low-end systems</li>
-  </ul>
+  <div class="pack-container">
+    <div class="pack">
+      <img src="https://i.imgur.com/fO2xTwz.png" alt="Faithful 32x">
+      <div class="pack-title">🧵 Faithful 32x</div>
+      <a class="download-btn" href="#">Download</a>
+    </div>
+    <div class="pack">
+      <img src="https://i.imgur.com/bAx1ETc.png" alt="PvP Ultra">
+      <div class="pack-title">⚔️ PvP Ultra</div>
+      <a class="download-btn" href="#">Download</a>
+    </div>
+    <div class="pack">
+      <img src="https://i.imgur.com/84oVnD5.png" alt="Realistic HD">
+      <div class="pack-title">🏞️ Realistic HD</div>
+      <a class="download-btn" href="#">Download</a>
+    </div>
+  </div>
 
   <script>
-    // Pointer trail
     document.addEventListener('mousemove', e => {
       const dot = document.createElement('div');
       dot.className = 'trail-dot';
