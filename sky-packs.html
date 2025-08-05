@@ -3,48 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Texture Packs</title>
+  <title>Sky Packs</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
     body {
-      background: #0d0d0d;
+      margin: 0;
       font-family: 'Orbitron', sans-serif;
-      color: white;
+      background: radial-gradient(circle at center, #0f0f0f 0%, #000000 100%);
+      color: #ffffff;
+      min-height: 100vh;
       padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 20px;
     }
 
     a {
       color: #00ffff;
       text-decoration: none;
+      font-size: 1.1em;
     }
 
     a:hover {
       text-decoration: underline;
     }
 
-    h1 {
-      font-size: 2.5em;
-      text-shadow: 0 0 10px #00ffff;
-    }
-
     ul {
       list-style: none;
       padding: 0;
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     li {
-      padding: 10px;
-      border-bottom: 1px solid #333;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #00ffff;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
+
+    li:hover {
+      background: rgba(0, 255, 255, 0.1);
+      transform: scale(1.02);
+    }
+
+    .trail-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 255, 255, 0.6);
+      pointer-events: none;
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(2);
+      }
     }
   </style>
 </head>
 <body>
   <a href="index.html">← Back to Home</a>
-  <h1>🎨 Texture Packs</h1>
+  <h1>🌌 Sky Packs</h1>
   <ul>
-    <li>🧵 Faithful 32x</li>
-    <li>⚔️ PvP Ultra Pack</li>
-    <li>🏞️ Realistic HD</li>
+    <li>🌠 Galaxy Sky – Full cosmic vibes</li>
+    <li>🌙 Night Sky Realism – True moon & stars</li>
+    <li>☁️ Blue Nebula – Glowing blue atmosphere</li>
+    <li>🌀 End Portal Sky – Trippy swirls</li>
+    <li>💫 Purple Galaxy – Vaporwave heaven</li>
   </ul>
+
+  <script>
+    // Pointer trail
+    document.addEventListener('mousemove', e => {
+      const dot = document.createElement('div');
+      dot.className = 'trail-dot';
+      dot.style.left = e.pageX + 'px';
+      dot.style.top = e.pageY + 'px';
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 1000);
+    });
+  </script>
 </body>
 </html>
