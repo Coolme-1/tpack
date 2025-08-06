@@ -49,7 +49,6 @@
       box-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc;
     }
 
-    /* Cursor trail */
     .cursor {
       position: fixed;
       width: 12px;
@@ -66,14 +65,13 @@
   <h1>Welcome to Coolme Packs</h1>
 
   <div class="btn-container">
-    <a href="sky-packs.html" class="nav-btn">Sky Packs</a>
-    <a href="texture-packs.html" class="nav-btn">Texture Packs</a>
+    <a href="sky-packs/index.html" class="nav-btn">Sky Packs</a>
+    <a href="texture-packs/index.html" class="nav-btn">Texture Packs</a>
   </div>
 
   <div class="cursor" id="cursor"></div>
 
   <script>
-    // Cursor trail effect
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
