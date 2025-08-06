@@ -15,6 +15,7 @@
       min-height: 100vh;
       padding: 40px;
       backdrop-filter: blur(4px);
+      user-select: none;
     }
 
     a {
@@ -64,20 +65,28 @@
       margin-bottom: 15px;
     }
 
+    .pack-info {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
     .pack-title {
       font-size: 1.2em;
-      margin-bottom: 10px;
-      text-align: center;
+      text-align: left;
     }
 
     .download-btn {
-      padding: 10px 20px;
+      padding: 8px 16px;
       background: #00ffff;
       color: black;
       font-weight: bold;
       text-decoration: none;
       border-radius: 6px;
       transition: 0.3s;
+      white-space: nowrap;
     }
 
     .download-btn:hover {
@@ -91,21 +100,27 @@
 
   <div class="pack-container">
     <div class="pack">
-      <img src="https://i.imgur.com/fO2xTwz.png" alt="Faithful 32x">
-      <div class="pack-title">🧵 Faithful 32x</div>
-      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
+      <img src="https://i.imgur.com/fO2xTwz.png" alt="Faithful 32x" />
+      <div class="pack-info">
+        <div class="pack-title">🧵 Faithful 32x</div>
+        <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank" download>Download</a>
+      </div>
     </div>
 
     <div class="pack">
-      <img src="https://i.imgur.com/bAx1ETc.png" alt="PvP Ultra">
-      <div class="pack-title">⚔️ PvP Ultra</div>
-      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
+      <img src="https://i.imgur.com/bAx1ETc.png" alt="PvP Ultra" />
+      <div class="pack-info">
+        <div class="pack-title">⚔️ PvP Ultra</div>
+        <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank" download>Download</a>
+      </div>
     </div>
 
     <div class="pack">
-      <img src="https://i.imgur.com/84oVnD5.png" alt="Realistic HD">
-      <div class="pack-title">🏞️ Realistic HD</div>
-      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
+      <img src="https://i.imgur.com/84oVnD5.png" alt="Realistic HD" />
+      <div class="pack-info">
+        <div class="pack-title">🏞️ Realistic HD</div>
+        <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank" download>Download</a>
+      </div>
     </div>
   </div>
 </body>
