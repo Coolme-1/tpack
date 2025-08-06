@@ -23,6 +23,9 @@
       color: #00ffff;
       text-decoration: none;
       font-size: 1em;
+      display: block;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     h1 {
@@ -35,7 +38,7 @@
     .pack-container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center; /* ✅ Center the entire grid */
+      justify-content: center;
       gap: 30px;
     }
 
@@ -59,6 +62,8 @@
 
     .pack img {
       width: 100%;
+      height: 160px; /* fixed height for all images */
+      object-fit: cover;
       border-radius: 10px;
       margin-bottom: 15px;
     }
@@ -102,9 +107,7 @@
   </style>
 </head>
 <body>
-  <div style="text-align: center; margin-bottom: 20px;">
-    <a href="/tpack/">← Back to Home</a>
-  </div>
+  <a href="/tpack/">← Back to Home</a>
 
   <h1>🌌 Sky Packs</h1>
 
@@ -114,17 +117,18 @@
       <div class="pack-title">Sky Pack 1</div>
       <a class="download-btn" href="https://download1588.mediafire.com/z8f7vymll1ogqJSkgJEUH_Gxod6CBtydaXlnephDLxzuHfUnYRzTbCmDHZ83ZZpMYC-QzKM5aL_V8xnIZUGiOeyuDIXU1fbzrDnf6ljlDOIccKRSocWpBWSUr5QvN7OrbkCJy5pi-QvczI33p8o4er0CAmw_mzqKd707pO1EyPsN2wU/f6bw1hxhecufgvg/Sky+Texture+1.zip">Download</a>
     </div>
+
     <div class="pack">
       <img src="https://i.postimg.cc/0NX3DfD6/SKY.png" alt="Realistic Night Sky">
       <div class="pack-title">Sky Pack 2</div>
       <a class="download-btn" href="https://download1979.mediafire.com/e21tzbzldrmgxt_D4dQltMIw-GpooVvPMxX3Ki4FW_ONzMCxQ_MrJ6lx7tgafzftnEYzGpEP2Oaxo6AyslBQbly3G12WnMq9snL3Ppe-0fDX69xkywPff2Jzca0IlvCYEouHWGwq0BYR5ZK8b33YeLFlsj4M8rIye5ulAZm3pN-_0zs/7imjw5srnf0cgz7/Sky+Texture+2.zip">Download</a>
     </div>
+
     <div class="pack">
       <img src="https://i.postimg.cc/CK6h5bK7/SKY.jpg" alt="Blue Nebula">
       <div class="pack-title">Sky Pack 3</div>
       <a class="download-btn" href="https://download1326.mediafire.com/31qy7lz1lg9gqhppXVnA-WchEV4GqfIbEmO0BBQR1wigavRvrYrCITiuZYeUaepY-NgrVy5LI8gGkMZSr939D39ucCo1izsTf9-9KgdID5dXOvDLsp3GzKu39eCRdcP7_ytgWB00j66w7sL7dZQpCXqSqbMH1dTDjxQB4LIZoNtc9oM/iuiwlk0xp12fq34/Sky+Texture+3.zip">Download</a>
     </div>
-    <!-- You can duplicate and add more pack divs here -->
   </div>
 
   <script>
