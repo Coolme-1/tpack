@@ -3,110 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Texture Packs</title>
+  <title>Coolme Packs</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: url('https://images.unsplash.com/photo-1504610926078-a1611febcad3') no-repeat center center/cover;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
       color: #fff;
-      min-height: 100vh;
-      padding: 40px;
-      backdrop-filter: blur(4px);
-    }
-
-    a {
-      color: #00ffff;
-      text-decoration: none;
-      font-size: 1em;
-      display: block;
-      text-align: center;
-      margin-bottom: 20px;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+      cursor: none; /* hide default cursor */
     }
 
     h1 {
       font-size: 3em;
-      text-shadow: 0 0 10px #00ffff;
-      margin-bottom: 30px;
-      text-align: center;
+      margin-bottom: 50px;
+      text-shadow: 0 0 10px #00ffcc;
     }
 
-    .pack-container {
+    .btn-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+      gap: 40px;
     }
 
-    .pack {
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px solid #00ffff50;
-      border-radius: 15px;
-      padding: 20px;
-      width: 280px;
-      box-shadow: 0 0 15px #00ffff60;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .pack:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00ffffa0;
-    }
-
-    .pack img {
-      width: 100%;
+    .nav-btn {
+      background: #111;
+      color: #00ffcc;
+      border: 2px solid #00ffcc;
+      padding: 20px 40px;
+      font-size: 1.5em;
       border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .pack-title {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .download-btn {
-      padding: 10px 20px;
-      background: #00ffff;
-      color: black;
-      font-weight: bold;
       text-decoration: none;
-      border-radius: 6px;
-      transition: 0.3s;
+      transition: 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
     }
 
-    .download-btn:hover {
-      background: #00dddd;
+    .nav-btn:hover {
+      background: #00ffcc;
+      color: #111;
+      box-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc;
+    }
+
+    .cursor, .trail {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #00ffcc;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .trail {
+      opacity: 0.3;
+      width: 8px;
+      height: 8px;
+      animation: fadeOut 0.5s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(2);
+      }
     }
   </style>
 </head>
 <body>
-  <a href="/tpack/">← Back to Home</a>
-  <h1>🎨 Texture Packs</h1>
+  <h1>Welcome to Coolme Packs</h1>
 
-  <div class="pack-container">
-    <div class="pack">
-      <img src="https://i.imgur.com/fO2xTwz.png" alt="Faithful 32x">
-      <div class="pack-title">🧵 Faithful 32x</div>
-      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
-    </div>
-
-    <div class="pack">
-      <img src="https://i.imgur.com/bAx1ETc.png" alt="PvP Ultra">
-      <div class="pack-title">⚔️ PvP Ultra</div>
-      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
-    </div>
-
-    <div class="pack">
-      <img src="https://i.imgur.com/84oVnD5.png" alt="Realistic HD">
-      <div class="pack-title">🏞️ Realistic HD</div>
-      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
-    </div>
+  <div class="btn-container">
+    <a href="sky-packs/index.html" class="nav-btn">Sky Packs</a>
+    <a href="texture-packs/index.html" class="nav-btn">Texture Packs</a>
   </div>
+
+  <div class="cursor" id="cursor"></div>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+
+    document.addEventListener('mousemove', e => {
+      const x = e.clientX;
+      const y = e.clientY;
+
+      cursor.style.left = x + 'px';
+      cursor.style.top = y + 'px';
+
+      // Create trail dot
+      const trail = document.createElement('div');
+      trail.className = 'trail';
+      trail.style.left = x + 'px';
+      trail.style.top = y + 'px';
+      document.body.appendChild(trail);
+
+      // Remove trail after animation
+      setTimeout(() => {
+        trail.remove();
+      }, 500);
+    });
+  </script>
 </body>
 </html>
