@@ -16,6 +16,7 @@
       padding: 40px;
       backdrop-filter: blur(4px);
       user-select: none;
+      overflow-x: hidden;
     }
 
     a {
@@ -92,6 +93,31 @@
     .download-btn:hover {
       background: #00dddd;
     }
+
+    /* Trail dot style */
+    .trail-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: rgba(0, 255, 255, 0.7);
+      border-radius: 50%;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px #0ff);
+      animation: fadeOut 1s forwards;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2);
+      }
+    }
   </style>
 </head>
 <body>
@@ -123,5 +149,16 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('mousemove', e => {
+      const dot = document.createElement('div');
+      dot.className = 'trail-dot';
+      dot.style.left = e.pageX + 'px';
+      dot.style.top = e.pageY + 'px';
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 1000);
+    });
+  </script>
 </body>
 </html>
