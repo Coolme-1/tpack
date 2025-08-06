@@ -29,11 +29,13 @@
       font-size: 3em;
       text-shadow: 0 0 10px #00ffff;
       margin-bottom: 30px;
+      text-align: center;
     }
 
     .pack-container {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center; /* ✅ Center the entire grid */
       gap: 30px;
     }
 
@@ -47,7 +49,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
-      align-items: center; /* ✅ Center content */
+      align-items: center;
     }
 
     .pack:hover {
@@ -64,7 +66,7 @@
     .pack-title {
       font-size: 1.2em;
       margin-bottom: 10px;
-      text-align: center; /* ✅ Title centered */
+      text-align: center;
     }
 
     .download-btn {
@@ -100,42 +102,29 @@
   </style>
 </head>
 <body>
-  <a href="/tpack/">← Back to Home</a>
+  <div style="text-align: center; margin-bottom: 20px;">
+    <a href="/tpack/">← Back to Home</a>
+  </div>
+
   <h1>🌌 Sky Packs</h1>
 
   <div class="pack-container">
     <div class="pack">
       <img src="https://i.imgur.com/YmEoK3r.jpg" alt="Galaxy Sky">
       <div class="pack-title">🌠 Galaxy Sky</div>
-      <a class="download-btn" href="<!-- link to .zip -->">Download</a>
+      <a class="download-btn" href="<!-- your-zip-link.zip -->">Download</a>
     </div>
     <div class="pack">
-      <img src="https://i.imgur.com/QLJ4No2.jpg" alt="Realistic Night">
+      <img src="https://i.imgur.com/QLJ4No2.jpg" alt="Realistic Night Sky">
       <div class="pack-title">🌙 Realistic Night Sky</div>
-      <a class="download-btn" href="<!-- link to .zip -->">Download</a>
-    </div>
-    <!-- 🧠 Replace links + change titles/images as needed -->
-    <div class="pack">
-      <img src="https://i.imgur.com/SbTVkyB.jpg" alt="Blue Nebula">
-      <div class="pack-title">☁️ Blue Nebula</div>
-      <a class="download-btn" href="<!-- link to .zip -->">Download</a>
+      <a class="download-btn" href="<!-- your-zip-link.zip -->">Download</a>
     </div>
     <div class="pack">
       <img src="https://i.imgur.com/SbTVkyB.jpg" alt="Blue Nebula">
       <div class="pack-title">☁️ Blue Nebula</div>
-      <a class="download-btn" href="<!-- link to .zip -->">Download</a>
+      <a class="download-btn" href="<!-- your-zip-link.zip -->">Download</a>
     </div>
-    <div class="pack">
-      <img src="https://i.imgur.com/SbTVkyB.jpg" alt="Blue Nebula">
-      <div class="pack-title">☁️ Blue Nebula</div>
-      <a class="download-btn" href="<!-- link to .zip -->">Download</a>
-    </div>
-    <div class="pack">
-      <img src="https://i.imgur.com/SbTVkyB.jpg" alt="Blue Nebula">
-      <div class="pack-title">☁️ Blue Nebula</div>
-      <a class="download-btn" href="<!-- link to .zip -->">Download</a>
-    </div>
-    <!-- Add more packs below if needed -->
+    <!-- You can duplicate and add more pack divs here -->
   </div>
 
   <script>
