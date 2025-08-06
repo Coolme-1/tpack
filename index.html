@@ -3,105 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Texture Packs</title>
+  <title>Coolme Packs</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: url('https://images.unsplash.com/photo-1504610926078-a1611febcad3') no-repeat center center/cover;
-      color: #fff;
-      min-height: 100vh;
-      padding: 40px;
-      backdrop-filter: blur(4px);
-    }
-
-    a {
-      color: #00ffff;
-      text-decoration: none;
-      font-size: 1em;
-    }
-
-    h1 {
-      font-size: 3em;
-      text-shadow: 0 0 10px #00ffff;
-      margin-bottom: 30px;
-    }
-
-    .pack-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-
-    .pack {
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px solid #00ffff50;
-      border-radius: 15px;
-      padding: 20px;
-      width: 280px;
-      box-shadow: 0 0 15px #00ffff60;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #0d0d0d;
+      overflow: hidden;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      color: white;
     }
 
-    .pack:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00ffffa0;
+    h1 {
+      font-size: 48px;
+      margin-bottom: 40px;
+      text-shadow: 0 0 15px #0ff;
     }
 
-    .pack img {
-      width: 100%;
+    .btn-container {
+      display: flex;
+      gap: 30px;
+      z-index: 2;
+    }
+
+    .glow-btn {
+      padding: 20px 40px;
+      font-size: 20px;
+      color: white;
+      background-color: transparent;
+      border: 2px solid #00ffcc;
       border-radius: 10px;
-      margin-bottom: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #00ffcc;
+      transition: all 0.3s ease;
     }
 
-    .pack-title {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-      text-align: center;
+    .glow-btn:hover {
+      background-color: #00ffcc;
+      color: #000;
+      box-shadow: 0 0 30px #00ffcc;
     }
 
-    .download-btn {
-      padding: 10px 20px;
-      background: #00ffff;
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: 0.3s;
-    }
-
-    .download-btn:hover {
-      background: #00dddd;
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-  <a href="/tpack/">← Back to Home</a>
-  <h1>🎨 Texture Packs</h1>
-
-  <div class="pack-container">
-    <div class="pack">
-      <img src="https://i.imgur.com/fO2xTwz.png" alt="Faithful 32x">
-      <div class="pack-title">🧵 Faithful 32x</div>
-      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
-    </div>
-
-    <div class="pack">
-      <img src="https://i.imgur.com/bAx1ETc.png" alt="PvP Ultra">
-      <div class="pack-title">⚔️ PvP Ultra</div>
-      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
-    </div>
-
-    <div class="pack">
-      <img src="https://i.imgur.com/84oVnD5.png" alt="Realistic HD">
-      <div class="pack-title">🏞️ Realistic HD</div>
-      <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank">Download</a>
-    </div>
+  <h1>Coolme Pack Collection</h1>
+  <div class="btn-container">
+    <button class="glow-btn" onclick="location.href='texture-packs.html'">Sky Packs</button>
+    <button class="glow-btn" onclick="location.href='sky-packs.html'">Texture Packs</button>
   </div>
+
+  <canvas id="trail"></canvas>
+
+  <script>
+    // Cursor trail animation
+    const canvas = document.getElementById("trail");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+
+    function createParticle(x, y) {
+      particles.push({
+        x,
+        y,
+        size: Math.random() * 5 + 2,
+        life: 100,
+        dx: (Math.random() - 0.5) * 2,
+        dy: (Math.random() - 0.5) * 2,
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.dx;
+        p.y += p.dy;
+        p.life--;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 255, 200, ${p.life / 100})`;
+        ctx.fill();
+        if (p.life <= 0) particles.splice(i, 1);
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      for (let i = 0; i < 5; i++) {
+        createParticle(e.clientX, e.clientY);
+      }
+    });
+
+    animateParticles();
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
