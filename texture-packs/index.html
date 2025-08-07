@@ -53,6 +53,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 420px;
     }
 
     .pack:hover {
@@ -62,6 +63,8 @@
 
     .pack img {
       width: 100%;
+      height: 180px;
+      object-fit: cover;
       border-radius: 10px;
       margin-bottom: 15px;
     }
@@ -69,32 +72,30 @@
     .pack-info {
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      margin-top: 10px;
+      gap: 10px;
     }
 
     .pack-title {
       font-size: 1.2em;
-      text-align: left;
+      text-align: center;
     }
 
     .download-btn {
-      padding: 8px 16px;
+      padding: 8px 20px;
       background: #00ffff;
       color: black;
       font-weight: bold;
       text-decoration: none;
       border-radius: 6px;
       transition: 0.3s;
-      white-space: nowrap;
     }
 
     .download-btn:hover {
       background: #00dddd;
     }
 
-    /* Trail dot style */
     .trail-dot {
       position: absolute;
       width: 12px;
@@ -125,14 +126,15 @@
   <h1>🎨 Texture Packs</h1>
 
   <div class="pack-container">
+
     <div class="pack">
-      <img src="https://i.postimg.cc/sDKBNcPG/1754541547929835-1.jpg" alt="" />
+      <img src="https://i.postimg.cc/sDKBNcPG/1754541547929835-1.jpg" alt="Bedwars 128x" />
       <div class="pack-info">
         <div class="pack-title">Bedwars 128x</div>
         <a class="download-btn" href="https://drive.google.com/uc?export=download&id=1EhLmlcSSRbCLd49AupSa3QCcqCgJDTBr" target="_blank" download>Download</a>
       </div>
     </div>
-    
+
     <div class="pack">
       <img src="https://i.imgur.com/fO2xTwz.png" alt="Faithful 32x" />
       <div class="pack-info">
@@ -156,6 +158,7 @@
         <a class="download-btn" href="<!-- ZIP LINK -->" target="_blank" download>Download</a>
       </div>
     </div>
+
   </div>
 
   <script>
