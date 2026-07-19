@@ -1,1 +1,267 @@
+<!-- Part 1: HTML structure and basic CSS (≈100 lines) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 Not Found</title>
+<style>
+  /* CSS Variables and Reset */
+  :root {
+    --bg-color: #000;
+    --primary-color: #0ff;
+    --accent-color: #f0f;
+    --font-color: #0ff;
+    --font-family: 'Arial', sans-serif;
+    --focus-ring: 2px dotted var(--primary-color);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; overflow:hidden; background:var(--bg-color); }
+  body { font-family: var(--font-family); color:var(--font-color); }
+  /* Canvas and layout */
+  #bgCanvas { position:absolute; top:0; left:0; }
+  #returnBtn {
+    position: absolute;
+    left:50%; top:50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.5);
+    border:2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    outline: none;
+    /* will-change hint for smoother transform on hover */
+    will-change: transform, border-color;
+    transition: transform 0.3s ease, border-color 0.3s;
+  }
+  #returnBtn:focus { outline: var(--focus-ring); }
+  #returnBtn:hover { border-color: var(--accent-color); transform: translate(-50%, -50%) scale(1.05); }
+  /* SVG icon inside button */
+  #returnBtn svg { width:24px; height:24px; vertical-align:middle; fill:var(--primary-color); }
+  #returnBtn span { margin-left:0.5rem; vertical-align:middle; }
+  /* Noscript fallback */
+  .noscript-fallback {
+    position:absolute; top:50%; left:50%;
+    transform: translate(-50%,-50%); text-align:center;
+    background:#111; border:2px solid #0ff; padding:2rem; border-radius:8px;
+  }
+  .noscript-fallback h1 { margin-bottom:1rem; font-size:2rem; }
+  .noscript-fallback a { color:var(--accent-color); text-decoration:underline; }
+</style>
+</head>
+<body>
+  <!-- Animated background canvas -->
+  <canvas id="bgCanvas"></canvas>
 
+  <!-- Return Home control -->
+  <button id="returnBtn" aria-label="Return to home page">
+    <!-- Inline SVG for arrow icon -->
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M10 19l-7-7 7-7v4h8v6h-8v4z"/>
+    </svg>
+    <span>Home</span>
+  </button>
+
+  <!-- Fallback for users without JS -->
+  <noscript>
+    <div class="noscript-fallback">
+      <h1>404 – Page Not Found</h1>
+      <p>It looks like the page you're looking for doesn't exist. Go back to the 
+      <a href="/">Home Page</a>.</p>
+    </div>
+  </noscript>
+<!-- Part 2: CSS animations and responsive adjustments (≈200 lines) -->
+<style>
+  /* Ensure canvas fills screen */
+  #bgCanvas { width:100vw; height:100vh; }
+  /* Particle and background effects might be composited here via JS */
+
+  /* Button hover animation (example) */
+  @keyframes glowPulse {
+    0%   { box-shadow: 0 0 5px var(--primary-color); }
+    50%  { box-shadow: 0 0 20px var(--accent-color); }
+    100% { box-shadow: 0 0 5px var(--primary-color); }
+  }
+  #returnBtn:hover {
+    animation: glowPulse 1.5s infinite;
+  }
+
+  /* Responsive font and button for small screens */
+  @media (max-width: 600px) {
+    #returnBtn { font-size: 1rem; padding: 0.8rem 1.5rem; }
+    #returnBtn svg { width:20px; height:20px; }
+  }
+
+  /* Prefers-reduced-motion: disable effects */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+<!-- Part 3: JavaScript (≈500 lines) -->
+<script>
+// =========== Initialization ===========
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+
+// Resize canvas to full window size (consider devicePixelRatio)
+function resizeCanvas() {
+  const dpr = window.devicePixelRatio || 1;
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+  ctx.scale(dpr, dpr);
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+// =========== Background Animation ===========
+let bgTime = 0;
+function drawBackground(delta) {
+  bgTime += delta * 0.0005;  // time in seconds
+  // Example: draw shifting gradient background
+  const gradient = ctx.createRadialGradient(
+    width/2, height/2, 0, width/2, height/2, Math.max(width,height)
+  );
+  const r = 128 + 128 * Math.sin(bgTime);
+  const g = 50;
+  const b = 128 + 128 * Math.cos(bgTime);
+  gradient.addColorStop(0, `rgb(${r}, ${g}, ${b})`);
+  gradient.addColorStop(1, '#000');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, width, height);
+}
+
+// =========== Particle System ===========
+const particles = [];
+const MAX_PARTICLES = 200;
+for (let i = 0; i < MAX_PARTICLES; i++) {
+  particles.push({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    vx: (Math.random() - 0.5) * 0.1,
+    vy: (Math.random() - 0.5) * 0.1,
+    size: Math.random() * 2 + 1,
+    opacity: Math.random() * 0.5 + 0.2
+  });
+}
+function updateParticles(delta) {
+  for (const p of particles) {
+    p.x += p.vx * delta * 0.05;
+    p.y += p.vy * delta * 0.05;
+    // Wrap around
+    if (p.x < 0) p.x = width;
+    if (p.x > width) p.x = 0;
+    if (p.y < 0) p.y = height;
+    if (p.y > height) p.y = 0;
+  }
+}
+function drawParticles() {
+  ctx.fillStyle = `rgba(200,200,255,0.7)`;
+  ctx.beginPath();
+  for (const p of particles) {
+    ctx.moveTo(p.x, p.y);
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+  }
+  ctx.fill();
+}
+
+// =========== Main Animation Loop ===========
+let lastTime = 0;
+function animate(time) {
+  const delta = time - lastTime;
+  lastTime = time;
+  // Clear canvas
+  ctx.clearRect(0, 0, width, height);
+  // Draw background and particles
+  drawBackground(delta);
+  updateParticles(delta);
+  drawParticles();
+  // Request next frame
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+
+// =========== Return-Home Button Hover (Magnetic Effect) ===========
+const returnBtn = document.getElementById('returnBtn');
+let btnRect = returnBtn.getBoundingClientRect();
+let hoverX = 0, hoverY = 0;
+let btnOffsetX = 0, btnOffsetY = 0;
+const stiffness = 0.1;  // spring stiffness
+
+// Mouse move handler for "magnetic" effect
+window.addEventListener('mousemove', e => {
+  btnRect = returnBtn.getBoundingClientRect();
+  // Distance from cursor to center of button
+  const dx = e.clientX - (btnRect.left + btnRect.width/2);
+  const dy = e.clientY - (btnRect.top + btnRect.height/2);
+  const dist = Math.hypot(dx, dy);
+  const radius = 100; // influence radius
+  if (dist < radius) {
+    // Pull the button toward the cursor with a spring-like translation
+    btnOffsetX = -(dx * stiffness);
+    btnOffsetY = -(dy * stiffness);
+  } else {
+    btnOffsetX *= 0.9; 
+    btnOffsetY *= 0.9;
+  }
+  returnBtn.style.transform = `translate(calc(-50% + ${btnOffsetX}px), calc(-50% + ${btnOffsetY}px))`;
+});
+
+// =========== Click Ripple Effect ===========
+let ripples = [];
+returnBtn.addEventListener('click', e => {
+  // Start ripple at cursor position
+  const rect = returnBtn.getBoundingClientRect();
+  const cx = e.clientX - rect.left;
+  const cy = e.clientY - rect.top;
+  ripples.push({ x: cx, y: cy, radius: 0 });
+});
+
+// Draw and expand ripples on the button (using CSS/JS)
+function animateRipples() {
+  requestAnimationFrame(animateRipples);
+  ripples = ripples.filter(r => r.radius < 200);
+  ripples.forEach(r => {
+    r.radius += 4;
+    const opacity = Math.max(0, 1 - r.radius/200);
+    // Draw on button using pseudo-element or overlay? 
+    // For simplicity, we'll adjust box-shadow as proxy (since inline <canvas> can't overlay DOM easily).
+    returnBtn.style.boxShadow = `0 0 ${r.radius/5}px rgba(255,255,255,${opacity})`;
+  });
+}
+requestAnimationFrame(animateRipples);
+
+// =========== Keyboard Accessibility ===========
+returnBtn.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    window.location.href = '/'; // simulate click
+  }
+  if (e.key === 'Escape') {
+    // Could navigate back or blur
+    window.history.back();
+  }
+});
+// Ensure button is focusable (it is, since <button>)
+returnBtn.tabIndex = 0;
+
+// =========== Reduced Motion Handling ===========
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  // Stop complex animations
+  ripples = [];
+  particles.splice(0, particles.length); // remove all particles
+}
+
+// =========== Fallback Handling ===========
+window.addEventListener('error', () => {
+  // If any script error, we could fallback to simple UI (optional)
+});
+</script>
+</body>
+</html>
